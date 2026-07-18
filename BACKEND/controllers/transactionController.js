@@ -1,4 +1,4 @@
-const Transaction = require("../models/Transaction"); // Adjust path based on your models folder
+const Transaction = require("../models/transaction"); 
 
 // @desc    Get all transactions for logged-in user
 // @route   GET /api/transactions

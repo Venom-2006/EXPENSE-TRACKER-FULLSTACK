@@ -19,7 +19,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/users/login", formData);
+      const response = await axios.post("https://expense-tracker-fullstack-1-o0un.onrender.com/api/users/login", formData);
       if (response.data.success) {
         localStorage.setItem("userInfo", JSON.stringify(response.data.data));
         navigate("/dashboard");

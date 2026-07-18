@@ -197,7 +197,7 @@ function Dashboard() {
     const config = getAuthConfig();
     if (!config) return;
     try {
-      const response = await axios.get("http://localhost:5000/api/transactions", config);
+      const response = await axios.get("https://expense-tracker-fullstack-1-o0un.onrender.com/api/transactions", config);
       if (response.data.success) setTransactions(response.data.data);
     } catch (err) {
       setError("Failed to load secure transaction rows.");
@@ -214,7 +214,7 @@ function Dashboard() {
     e.preventDefault();
     const config = getAuthConfig();
     try {
-      const response = await axios.post("http://localhost:5000/api/transactions", {
+      const response = await axios.post("https://expense-tracker-fullstack-1-o0un.onrender.com/api/transactions", {
         ...formData,
         amount: parseFloat(formData.amount),
         category: formData.category.toLowerCase().trim()
@@ -232,7 +232,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     const config = getAuthConfig();
     try {
-      const response = await axios.delete(`http://localhost:5000/api/transactions/${id}`, config);
+      const response = await axios.delete(`https://expense-tracker-fullstack-1-o0un.onrender.com/api/transactions/${id}`, config);
       if (response.data.success) setTransactions(transactions.filter((t) => t._id !== id));
     } catch (err) {
       setError("Failed to delete record.");

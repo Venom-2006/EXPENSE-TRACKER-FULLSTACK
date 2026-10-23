@@ -1,12 +1,21 @@
 const express=require("express");
 const cors=require("cors");
 const connectDB=require("./config/db");
+const { rateLimiter } = require("./middleware/rateLimiterMiddleware");
 require("dotenv").config();
 const app = express();
 
 connectDB();
 
 const PORT = process.env.PORT||5000;
+
+const globalLimiter = rateLimiter({
+    windowMs:15*60*1000,
+    max:100
+});
+
+app.use('/api',globalLimiter);
+
 const userRoutes=require("./routes/userRoutes");
 const transactionRoutes=require("./routes/transactionRoutes");
 app.use(cors());
